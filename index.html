@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Retro AR</title>
 
-  <!-- Use Compatible Versions -->
-  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+  <!-- Stable A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+  <!-- Use UNPKG instead of jsdelivr -->
+  <script src="https://unpkg.com/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
     body { margin: 0; overflow: hidden; }
@@ -19,8 +21,6 @@
 <a-scene
   mindar-image="imageTargetSrc: ./targets.mind;"
   embedded
-  color-space="sRGB"
-  renderer="colorManagement: true"
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: false">
 
@@ -49,8 +49,11 @@
 </a-scene>
 
 <script>
-document.querySelector("a-scene").addEventListener("targetFound", () => {
-  document.querySelector("#video").play();
+const scene = document.querySelector("a-scene");
+const video = document.querySelector("#video");
+
+scene.addEventListener("targetFound", () => {
+  video.play();
 });
 </script>
 
